@@ -1,14 +1,14 @@
-use goblin::Object;
-use std::fs;
-
-fn main() {
-    let bytes = fs::read("some_binary").expect("Cannot read file");
-
-    match Object::parse(&bytes) {
+use goblin::Object ;
+use std::fs ;
+fn main(){
+    let some_binary = fs::read("main").expect("Failed !"); //use a compiled file insted of main file
+    match Object::parse(&some_binary){
         Ok(obj) => match obj {
-            Object::Elf(_) => println!("This is an ELF file."),
-            _ => println!("Not an ELF file."),
+            Object::Elf(_) => println!("This is a elf file !"),
+            _ => println!("This is not a elf file"),
         },
-        Err(e) => println!("Error parsing object: {}", e),
+        Err(e) => {
+            eprintln!("Error :{}" , e);
+        }
     }
 }
