@@ -8,7 +8,8 @@ fn might_fail(i: i32) -> Result<String> {
     }
 }
 
-fn main() -> Result<()> {
+fn main() -> Result<()> {        //here use only Result<()> not std::io::Result;
+                                  //because we have already implimented anyhow::Result<String>  error type 
     let val = might_fail(10)?;
     println!("Success: {}", val);
     Ok(())
