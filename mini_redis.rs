@@ -1,18 +1,17 @@
-use mini_redis::{client, Result};
-
+use mini_redis::{client , Result};
 #[tokio::main]
-async fn main() -> Result<()> {
-    // কনকট Redis সরভর
-    let mut conn = client::connect("127.0.0.1:6379").await?;
+pub async fn main() -> Result<()> {
 
-    // ভযল সট কর
-    conn.set("Hello", "Sohee al mahdi".into()).await?;
+    let mut connection = client::connect("192.168.104:333").await?;
+    connection.set("hello" , "Sohee AL MAhdi Dibbo".into()).await?;
+    let result = connection.get("hello").await?;
+    if let Some(v) = result {
 
-    // ভযল পড় আন
-    let result = conn.get("Hello").await?;
+        println!("The value is :{:?}" , v);
+    }else {
 
-    // ফলফল দখও
-    println!("Got value from hello is: {:?}", result);
-
+        eprintln!("No value found !");
+    }
     Ok(())
-}
+} 
+ 
