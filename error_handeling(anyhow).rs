@@ -70,11 +70,29 @@ fn read_num_from_file(path : &str) -> Result<Vec<i32> , Box<dyn Error>> {
     Ok(number)
 }
 fn main() -> Result<() , Box<dyn Error>>{
-
-
-//ex-4 
-    
     let result = read_num_from_file("num.txt");
     println!("Your number is :{:?}" , result);
     Ok(())
+}
+
+
+ex---4
+fn extract_prefix(s: &str, len: usize) -> Option<String> {
+    let mut chars = s.chars();
+    let prefix: String = chars.by_ref().take(len).collect();
+    
+    // নিশ্চিত করি যে আমরা যথেষ্ট character পেয়েছি
+    if prefix.chars().count() == len {
+        Some(prefix)
+    } else {
+        None
+    }
+}
+
+fn main() {
+    let input = String::from("নমস্কারRustaceans"); // বাংলা + ইংরেজি
+    match extract_prefix(&input, 5) {
+        Some(prefix) => println!("Prefix: {}", prefix),
+        None => println!("String too short!"),
+    }
 }
