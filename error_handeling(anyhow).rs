@@ -48,4 +48,33 @@ fn main() {
 
 
 ex-3 
+use std::fs::File ;
+use std::io::{ BufRead , BufReader};
+use std::error::Error ;
+fn read_num_from_file(path : &str) -> Result<Vec<i32> , Box<dyn Error>> {
 
+    let file = File::open(&path).expect("Failed to open file");
+    let reader = BufReader::new(file);
+    let mut number = Vec::new();
+    for line in reader.lines(){
+
+        let line = line?;
+        if let Ok(num) = line.trim().parse::<i32>(){
+
+            number.push(num);
+        }else {
+
+            eprintln!("Warning skeping invalid number not i32 :{}" , line);
+        }
+    }
+    Ok(number)
+}
+fn main() -> Result<() , Box<dyn Error>>{
+
+
+//ex-4 
+    
+    let result = read_num_from_file("num.txt");
+    println!("Your number is :{:?}" , result);
+    Ok(())
+}
