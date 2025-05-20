@@ -96,3 +96,35 @@ fn main() {
         None => println!("String too short!"),
     }
 }
+...
+
+
+
+another excercise about encrypt and decrypt a text string using windows dpapi 
+
+
+use windows_dpapi::{encrypt_data , decrypt_data , Scope};
+fn dec_enc_data(target_data : &[u8]) -> Result<String , Box<dyn std::error::Error>>{
+    let do_encrypt = encrypt_data(target_data , Scope::User).expect("Failed to encrypt data !");
+    let do_decrypt = decrypt_data(&do_encrypt , Scope::User).expect("Failed to decrypt data !");
+    let result = String::from_utf8_lossy(&do_decrypt);
+    Ok(result.to_string())
+}
+fn main() -> anyhow::Result<()> {
+    let data_byte = b"Hello kohee and dibbo";
+    let main_result = dec_enc_data(data_byte);
+    match main_result{
+        Ok(data) => {
+
+            println!("Your decrypted dats is :{:?}" , data);
+        }
+        Err(e) => {
+            eprintln!("Error as e :{:?}" , e);
+        }
+    }
+    Ok(())
+}
+
+
+
+
