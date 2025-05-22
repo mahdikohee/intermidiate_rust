@@ -82,3 +82,35 @@ Network protocols, কিছু embedded systems = Big Endian
 "Network Byte Order" মানেই Big Endian
 
 ///another example 
+use std::fs::File ;
+use std::io::Read ;
+use std::process::exit ;
+use anyhow::Context;
+
+fn read_file(file_path :&str) -> anyhow::Result<String> {
+
+   let mut  file = File::open("log.c").with_context(|| format!("Failed to read file {:?}" , file_path))?;
+   let mut content = String::new() ;
+   match file.read_to_string(&mut content){
+
+       Ok(_) => {},
+       Err(e) => {
+
+           eprintln!("Error :{:?}" , e);
+       }
+   }
+   Ok(content.to_string())
+}
+fn main() -> anyhow::Result<()> {
+
+    let result = read_file("log.c").unwrap_or_else(|err| {
+
+        eprintln!("Error as err :{:?}" , err);
+        exit(1);
+    });
+    println!("File content is :{:?}" , result);
+    Ok(())
+}
+
+
+//another example 
