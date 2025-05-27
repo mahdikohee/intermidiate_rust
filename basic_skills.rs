@@ -112,5 +112,30 @@ fn main() {
 
 
 
-//
+//random number 
+use rand::rngs::ThreadRng;
+use rand::RngCore;
 
+fn main() {
+    // নতুন ThreadRng তৈরি
+    let mut rng: ThreadRng = ThreadRng::default();
+
+    // next_u32() থেকে নম্বর নিয়ে টাইপ কাস্ট করে র‍্যান্ডম তৈরি করা
+    let n1: u8 = (rng.next_u32() % 256) as u8;
+    let n2: u16 = (rng.next_u32() % 65536) as u16;
+
+    println!("Random u8: {}", n1);
+    println!("Random u16: {}", n2);
+    println!("Random u32: {}", rng.next_u32());
+
+    // i32 তৈরি করার জন্য next_u32() থেকে কাস্ট করে নিতে হবে
+    let n_i32: i32 = rng.next_u32() as i32;
+    println!("Random i32: {}", n_i32);
+
+    // f64 তৈরি করার জন্য u32 কে 0..1 স্কেলে রূপান্তর করা হয়
+    let n_f64: f64 = (rng.next_u32() as f64) / (u32::MAX as f64);
+    println!("Random float: {}", n_f64);
+}
+
+
+//
