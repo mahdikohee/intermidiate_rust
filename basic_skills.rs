@@ -80,3 +80,37 @@ fn main(){
     let sentence : String = vector.join(" ");                  //join makes String by default 
     println!("The sentence is :{:?}" , sentence);
 }
+
+//A Simple hashmap 
+use std::collections::HashMap ; 
+fn main(){
+    let mut people : HashMap<String , i32> = HashMap::new();
+    people.insert(String::from("Kohee") , 21); 
+    people.insert(String::from("Sohee") , 32) ; 
+    people.insert(String::from("Rahi") , 43); 
+
+    for (name , age) in &people{
+
+        println!("Name is :{:?} and age :{:?}" , name , age)
+    }
+}
+
+
+note ==> String::new() creates a empty string ....String::from() creates a string which already has a string value ..its not empty 
+
+
+//Option<i32> 
+fn main() {
+
+    let conf_port : Option<i32> = None ;
+    let port = conf_port.unwrap_or_else(|| {
+        println!("No port has seen yet !");
+        9090
+    });
+    println!("Your conf message -> {:?}" , port);
+}
+
+
+
+//
+
