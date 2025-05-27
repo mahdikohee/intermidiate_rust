@@ -32,4 +32,16 @@ fn main() {
     }
 }
 
+//some vec ex
+fn main() {
+    let vector: Vec<i32> = vec![10, 20, 30, 40, 50, 60, 70, 80, 90, 1000];
+    let filtered: Vec<i32> = vector.into_iter().filter(|&x| x < 60).collect();
+    
+    if !filtered.is_empty() {
+        println!("Less than 60 are: {:?}", filtered);
+    } else {
+        println!("No value found!");
+    }
+}
+
 
