@@ -44,4 +44,39 @@ fn main() {
     }
 }
 
+//some vec ex 
+fn main(){
 
+    let mut vector : Vec<i32> = Vec::new();
+    for i in 1..100{
+
+        vector.push(i * 3);
+    }
+    println!("The value has pussed !");
+    println!("{:?}" , vector);
+    let filter  : Vec<i32> = vector.into_iter().filter(|&x| x > 20 ).collect();
+    if !filter.is_empty(){
+
+        println!("The value of vector greater then 20 is :{:?}" , filter);
+    }else {
+
+        println!("No value found greater then 20 !");
+    }
+}
+
+
+//more ex of vec
+fn main(){
+
+    let vector : Vec<&str> = vec!["I" , "am" , "the" , "Best"] ; 
+    let sentence :&str = &vector.join(" ");   //by default join makes String not str ..if we set the type as &str then we have to use &[the veriable] like &vector
+    println!("The sentence is :{:?}" , sentence);
+}
+
+//the default example of join is 
+fn main(){
+
+    let vector : Vec<&str> = vec!["I" , "am" , "the" , "best"]; 
+    let sentence : String = vector.join(" ");                  //join makes String by default 
+    println!("The sentence is :{:?}" , sentence);
+}
