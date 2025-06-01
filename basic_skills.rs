@@ -195,3 +195,36 @@ fn main(){
         }
     }
 }
+
+
+
+//same code by with Box dyn error handleing method 
+use pnet::datalink;
+use mac_address::mac_address_by_name;
+use std::error::Error;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    for iface in datalink::interfaces() {
+        if iface.is_loopback() {
+            continue;
+        }
+
+        println!("Your interface has found: {:?}", iface.name);
+
+        // MAC address তোলা
+        match mac_address_by_name(&iface.name) {
+            Ok(Some(mac)) => {
+                println!("Your interface is: {:?}", iface.name);
+                println!("And your mac addr is: {:?}", mac.to_string());
+            }
+            Ok(None) => {
+                eprintln!("No mac address found on {:?}", iface.name);
+            }
+            Err(e) => {
+                eprintln!("Error while getting mac address on {:?}: {:?}", iface.name, e);
+            }
+        }
+    }
+
+    Ok(())
+}
