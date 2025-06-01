@@ -171,4 +171,27 @@ fn main() {
     }
 }
 
-//
+//get mac address by usign another way by pnet , and datalink 
+use pnet::datalink ;
+use mac_address::mac_address_by_name ;
+fn main(){
+    for iface in datalink::interfaces(){
+        if iface.is_loopback(){
+            continue ;
+        }
+        println!("I-face is {:?}" ,iface.name) ;
+        match mac_address_by_name(&iface.name){
+            Ok(Some(mac)) => {
+                println!{"Interface is {:?}" , iface.name} ;
+                println!("And mac addr of that is {:?}" , mac.to_string()) ;
+                return ;
+            }
+            Ok(None) => {
+                println!("No mac address has found in {:?}" , iface.name)
+            }
+            Err(e) => {
+                eprintln!("Error while getting mac address of {:?} :{:?}" , iface ,e);
+            }
+        }
+    }
+}
