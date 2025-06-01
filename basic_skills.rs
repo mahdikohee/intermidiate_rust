@@ -138,4 +138,21 @@ fn main() {
 }
 
 
-//
+//get your mac address -----with iter 
+use mac_address::MacAddressIterator;
+use std::error::Error;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    match MacAddressIterator::new() {
+        Ok(addrs) => {
+            for addr in addrs {
+                println!("Your address is {:?}", addr.to_string());
+            }
+        }
+        Err(e) => {
+            eprintln!("Error: {:?}", e);
+        }
+    }
+    Ok(())
+}
+
