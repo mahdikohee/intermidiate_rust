@@ -366,4 +366,23 @@ fn main() -> anyhow::Result<()> {
 
 
 
-//
+//  the usage of .nth() and .get() 
+fn main() {
+    let v = vec![10, 20, 30, 40, 50];
+
+    // get() ব্যবহার
+    if let Some(value) = v.get(2) {                                        
+        println!("get(2) gave: {}", value);
+    }
+
+    // nth() ব্যবহার (ইটারেটর থেকে)
+    if let Some(value) = v.iter().nth(2) {
+        println!("nth(2) gave: {}", value);
+    }
+}
+...........some explanation of the previous code ....
+both vector.get()  and .nth() are  Option<i32> and the are a little bit diffirent
+vector_veriable.get() this can be used only for vector with option type for Option<&..> types 
+but .nth() is very flexible and can work with almost all kind of iterator in rust ....and its also Option<&...> type as .get() method ....but for .nth() method 
+it must be an iterator 
+
