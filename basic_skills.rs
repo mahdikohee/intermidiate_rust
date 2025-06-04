@@ -519,3 +519,23 @@ fn main() {
     println!("a == c: {}", a == c); // false
 }
 
+
+//another example of enum using #[derive[PartialEq)] 
+#[derive(PartialEq)]
+enum Status {
+    Online,
+    Offline,
+    Unknown,
+}
+
+fn main() {
+    let s1 = Status::Online;
+    let s2 = Status::Offline;
+    let s3 = Status::Online;
+
+    println!("s1 == s2: {}", s1 == s2); // false
+    println!("s1 == s3: {}", s1 == s3); // true
+}
+
+
+
