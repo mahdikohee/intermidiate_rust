@@ -329,7 +329,7 @@ fn extract_prefix(s: &str, len: usize) -> Option<String> {
 }
 
 fn main() {
-    let input = String::from("নমস্কারRustaceans"); // বাংলা + ইংরেজি
+    let input = String::from("Fukc of"); // বাংলা + ইংরেজি
     match extract_prefix(&input, 5) {
         Some(prefix) => println!("Prefix: {}", prefix),
         None => println!("String too short!"),
@@ -393,3 +393,45 @@ fn main(){
     let value = 21 ;
     dbg!(value) ;                            //autometically debug code in order to write more safer code in rust 
 }
+
+
+
+//basic debugging 
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+
+fn main() {
+    let p = Person {
+        name: "Alice".to_string(),
+        age: 30,
+    };
+
+    println!("{:?}", p); // Debug print
+}
+
+/////////////////////////////Some explanation of previous ..................................
+#[derive(Debug)]  it will compile the code autometically in the debug mode .....if i use this i must have to use {:?} to the ptintln .....and i may use dbg!() for more debugging ....in my code
+    in my code i should get an error because i did not use println or any perticular reason of this 2 veriable -name and age ......2 way to fix this warning/error 
+    and that is use ...println!("{:?} {:?}" , person.name , person.age) ; .........or u may use #[allow(dead_code)] to fuck the warning of rust compiler
+
+example src/main.rs
+____________________
+#[allow(dead_code)]
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: i32,
+}
+
+fn main() {
+    let person1 = Person {
+        name: String::from("Kohee"),
+        age: 34,
+    };
+
+    println!("{:?}", person1);
+}
+
