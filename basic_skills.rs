@@ -539,3 +539,12 @@ fn main() {
 
 
 
+//A simple example of box<[u8]>
+fn main() {
+    let arr: [u8; 4] = [1, 2, 3, 4];
+    let boxed: Box<[u8]> = Box::new(arr);     //compiler does not knows the heap allocated size so we have to allocate it 
+
+    println!("Boxed slice: {:?}", boxed);
+}
+
+
