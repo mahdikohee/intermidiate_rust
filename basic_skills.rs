@@ -437,3 +437,26 @@ fn main() {
     println!("{:?}", person1);
 }
 
+
+///another example of vector struct 
+#[derive(Debug)] 
+struct Log {
+    message : Vec<String> ,
+}
+fn main(){
+    let log = Log {
+        message : vec![
+            "System booted".to_string() , 
+            "User logged in".to_string() ,
+        ] ,
+    }; 
+    println!("Your log message {:?}" , log.message) ;
+}
+
+////previous code explained --->?
+Nothing is new here ....A Struct is like a struct and a vector is like a vector 
+Nothing else 
+
+
+
+//another 
