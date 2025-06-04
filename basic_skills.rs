@@ -416,6 +416,8 @@ fn main() {
 #[derive(Debug)]  it will compile the code autometically in the debug mode .....if i use this i must have to use {:?} to the ptintln .....and i may use dbg!() for more debugging ....in my code
     in my code i should get an error because i did not use println or any perticular reason of this 2 veriable -name and age ......2 way to fix this warning/error 
     and that is use ...println!("{:?} {:?}" , person.name , person.age) ; .........or u may use #[allow(dead_code)] to fuck the warning of rust compiler
+    BUT THE BEST PRACTISE IS NOT TO USE #[allow(dead_code)]
+
 
 example src/main.rs
 ____________________
