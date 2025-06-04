@@ -487,3 +487,17 @@ fn main(){
     println!("{:#?}" ,person.address.city) ; 
     println!("{:#?}" ,person.address.zip) ; 
 }                                                  //this code a little bit diffirent from the previous code ....
+
+//
+#[derive(Clone)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p1 = Point { x: 10, y: 20 };
+    let p2 = p1.clone();  // u cannot use clone() without definning #[derive(Clone)]
+
+    println!("({}, {})", p2.x, p2.y);
+}
