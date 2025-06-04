@@ -341,7 +341,7 @@ fn main() {
 
 another excercise about encrypt and decrypt a text string using windows dpapi 
 //another 
-
+//This is a simpel example ..and for real life security I should use more powerful and letest encryption method 
 use windows_dpapi::{encrypt_data , decrypt_data , Scope};
 fn dec_enc_data(target_data : &[u8]) -> Result<String , Box<dyn std::error::Error>>{
     let do_encrypt = encrypt_data(target_data , Scope::User).expect("Failed to encrypt data !");
@@ -386,3 +386,10 @@ vector_veriable.get() this can be used only for vector with option type for Opti
 but .nth() is very flexible and can work with almost all kind of iterator in rust ....and its also Option<&...> type as .get() method ....but for .nth() method 
 it must be an iterator 
 
+
+
+//another simple trick that may improve my debugging skills 
+fn main(){
+    let value = 21 ;
+    dbg!(value) ;                            //autometically debug code in order to write more safer code in rust 
+}
