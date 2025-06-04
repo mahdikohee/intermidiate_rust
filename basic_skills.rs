@@ -489,7 +489,7 @@ fn main(){
 }                                                  //this code a little bit diffirent from the previous code ....
 
 //
-#[derive(Clone)]
+#[derive(Clone)]   
 struct Point {
     x: i32,
     y: i32,
@@ -501,3 +501,21 @@ fn main() {
 
     println!("({}, {})", p2.x, p2.y);
 }
+
+
+//another example 
+#[derive(PartialEq)]        //this line compare the veriable ....maybe equal or not 
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let a = Point { x: 3, y: 4 };
+    let b = Point { x: 3, y: 4 };
+    let c = Point { x: 5, y: 6 };
+
+    println!("a == b: {}", a == b); // true
+    println!("a == c: {}", a == c); // false
+}
+
