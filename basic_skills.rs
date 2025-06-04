@@ -460,3 +460,30 @@ Nothing else
 
 
 //another 
+#[derive(Debug)] 
+struct Address{
+    city : String , 
+    zip : u32 ,
+} 
+
+#[derive(Debug)] 
+struct Person{
+    name : String,
+    age :  u32 , 
+    address : Address ,
+}
+fn main(){
+    let person = Person{
+        name : "Kohee".to_string() , 
+        age : 13 , 
+        address : Address{
+            city : "Dhaka".to_string() , 
+            zip : 1023 ,
+        } , 
+    }; 
+    println!("{:#?}" ,person.name);
+    println!("{:#?}" ,person.age) ; 
+    println!("{:#?}" ,person.address) ; 
+    println!("{:#?}" ,person.address.city) ; 
+    println!("{:#?}" ,person.address.zip) ; 
+}                                                  //this code a little bit diffirent from the previous code ....
