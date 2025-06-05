@@ -115,3 +115,38 @@ fn main() {
     }
 }
 
+//another example to capture packet in raw way 
+use pcap::{Capture, Device};
+use std::error::Error;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    // ডিফল্ট ডিভাইস খুঁজে বের করি
+    let device = Device::lookup()?.ok_or("No device available")?;
+
+    println!("Using device: {}", device.name);
+
+    // ক্যাপচার ওপেন করি
+    let mut cap = Capture::from_device(device)?
+        .immediate_mode(true)
+        .open()?;
+
+    // প্যাকেট পড়া শুরু
+    loop {
+        match cap.next_packet() {
+            Ok(packet) => {
+                println!("{:?}", packet);
+            }
+            Err(pcap::Error::NoMorePackets) => {
+                // আর প্যাকেট নেই (এইটা সাধারণত dump file-এর জন্য হয়)
+                break;
+            }
+            Err(err) => {
+                // অন্য কোনো সমস্যা হলে
+                eprintln!("Error: {}", err);
+                break;
+            }
+        }
+    }
+
+    Ok(())
+}
