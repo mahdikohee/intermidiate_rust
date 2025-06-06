@@ -50,3 +50,31 @@ fn main() {
     };
     person.greet();
 }
+
+//another oop practise on self 
+struct Hacker {
+    name: String,
+    level: u32,
+}
+
+impl Hacker {
+    // Constructor function using Self
+    fn new(name: &str, level: u32) -> Self {
+        Self {
+            name: name.to_string(),
+            level,
+        }
+    }
+
+    fn display(&self) {
+        println!("Name: {}, Level: {}", self.name, self.level);
+    }
+}
+
+fn main() {
+    let dd = Hacker::new("Hacker DD", 99);
+    dd.display();
+}
+
+
+
