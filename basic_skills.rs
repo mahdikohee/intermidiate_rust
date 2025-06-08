@@ -565,3 +565,20 @@ fn main() {
 }
 
 
+//another example 
+use std::collections::HashMap;
+
+fn main() {
+    let mut capitals = HashMap::new();
+
+    capitals.insert(String::from("Bangladesh"), String::from("Dhaka"));
+    capitals.insert(String::from("India"), String::from("New Delhi"));
+    capitals.insert(String::from("Japan"), String::from("Tokyo"));
+
+    println!("🌍 Country Capitals:");
+    for (country, capital) in &capitals {
+        println!("{}: {}", country, capital);
+    }
+}
+
+
