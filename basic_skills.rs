@@ -548,3 +548,20 @@ fn main() {
 }
 
 
+//Simple example of hashmap 
+use std::collections::HashMap;
+
+fn main() {
+    let mut student_marks = HashMap::new();
+
+    student_marks.insert(String::from("Alice"), 85);
+    student_marks.insert(String::from("Bob"), 92);
+    student_marks.insert(String::from("Charlie"), 78);
+
+    println!("🎓 Student Marks:");
+    for (name, mark) in &student_marks {
+        println!("{}: {}", name, mark);
+    }
+}
+
+
