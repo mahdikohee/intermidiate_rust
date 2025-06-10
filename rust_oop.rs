@@ -76,5 +76,19 @@ fn main() {
     dd.display();
 }
 
+//lets learn generics 
+use std::fmt::Debug;
+
+fn print_value<T: Debug>(value: T) {
+    println!("The value is {:?}", value);
+}
+
+fn main() {
+    print_value(21);
+    print_value("Hello world");
+    print_value(3.33);
+}
+
+
 
 
