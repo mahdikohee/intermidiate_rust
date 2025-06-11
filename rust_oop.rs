@@ -186,3 +186,39 @@ fn main() {
     }
 }
 
+//another simple example 
+trait Show {
+    fn area(&self) -> f64;
+}
+
+struct Circle {
+    redious: f32,
+}
+
+impl Show for Circle {
+    fn area(&self) -> f64 {
+        (self.redious as f64) * 3.1416 * 3.1416
+    }
+}
+
+struct Rectangle {
+    length: i32,
+    width: i32,
+}
+
+impl Show for Rectangle {
+    fn area(&self) -> f64 {
+        (self.length * self.width) as f64
+    }
+}
+
+fn main() {
+    let cir = Circle { redious: 32.323 };
+    let rec = Rectangle { length: 32, width: 10 };
+    let vector: Vec<&dyn Show> = vec![&cir, &rec];
+    for i in vector.iter() {
+        println!("Area {:?}", i.area());
+    }
+}
+
+
