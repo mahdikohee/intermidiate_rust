@@ -91,4 +91,66 @@ fn main() {
 
 
 
+//another example 
+use std::fmt::Debug;
+
+fn print_value<T: Debug>(value: T) {
+    println!("The value is {:?}", value);
+}
+
+fn main() {
+    print_value(21);
+    print_value("Hello world");
+    print_value(3.33);
+}
+
+
+//another example 
+#[derive(Debug)]
+struct Container<T> {
+    item: T,
+}
+
+fn main() {
+    let int_box = Container { item: 42 };
+    let str_box = Container { item: "Rust" };
+    
+    println!("{:?}", int_box);
+    println!("{:?}", str_box);
+}
+
+
+//another example
+#[derive(Debug)]
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Point<T> {
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+fn main() {
+    let p1 = Point::new(3, 4);
+    let p2 = Point::new(2.5, 6.7);
+    
+    println!("{:?}", p1);
+    println!("{:?}", p2);
+}
+
+
+///another generics example which returns something 
+fn return_first<T, U>(a: T, _b: U) -> T {
+    a
+}
+
+fn main() {
+    let result = return_first("Hello", 42);
+    println!("{}", result);
+}
+
+
 
