@@ -153,4 +153,36 @@ fn main() {
 }
 
 
+///another oop example 
+// Show trait ডিফাইন করলাম
+trait Show {
+    fn show(&self) -> String;
+}
+
+// i32 এর জন্য Show ইমপ্লিমেন্ট করলাম
+impl Show for i32 {
+    fn show(&self) -> String {
+        format!("four-byte signed {}", self)
+    }
+}
+
+// f64 এর জন্য Show ইমপ্লিমেন্ট করলাম
+impl Show for f64 {
+    fn show(&self) -> String {
+        format!("eight-byte float {}", self)
+    }
+}
+
+fn main() {
+    let answer: i32 = 42;
+    let maybe_pi: f64 = 3.14;
+
+    // Trait Object: &dyn Show হলো 'Trait Object' টাইপ
+    let v: Vec<&dyn Show> = vec![&answer, &maybe_pi];
+
+    for d in v.iter() {
+        // এখানে Runtime এ সঠিক Show::show() কল হয়
+        println!("show {}", d.show());
+    }
+}
 
