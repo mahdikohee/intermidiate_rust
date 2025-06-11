@@ -19,3 +19,14 @@ fn main() {
     let max = u32::MAX;
     println!("{}", max.count_zeros()); // 0
 }
+
+
+//a simple rust code to convert a binary to an integer 
+fn main() {
+    let binary_input = "01001100";
+
+    match u32::from_str_radix(binary_input, 2) {
+        Ok(decimal) => println!("Binary: {} -> Decimal: {}", binary_input, decimal),
+        Err(_) => println!("Invalid binary input, DD..."),
+    }
+}
