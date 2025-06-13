@@ -222,3 +222,34 @@ fn main() {
 }
 
 
+
+
+///another example 
+use std::fmt;
+
+#[derive(Debug)] // এটি Debug ট্রেট অটোমেটিক যোগ করে
+struct Person {
+    name: String,
+    age: u8,
+}
+
+// এখন Display ট্রেট নিজে ইমপ্লিমেন্ট করি
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{} এর বয়স {} বছর", self.name, self.age)
+    }
+}
+
+fn main() {
+    let p = Person {
+        name: "Ayon".to_string(),
+        age: 23,
+    };
+
+    // Debug প্রিন্ট (ডেভেলপমেন্টের জন্য)
+    println!("Debug আউটপুট: {:?}", p);
+
+    // Display প্রিন্ট (ইউজারের জন্য)
+    println!("Display আউটপুট: {}", p);
+}
+
