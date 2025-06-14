@@ -30,3 +30,13 @@ fn main() {
         Err(_) => println!("Invalid binary input, DD..."),
     }
 }
+
+//another example
+use std::mem::size_of;
+
+fn main() {
+    println!("Size of u8: {} bytes", size_of::<u8>());
+    println!("Size of i32: {} bytes", size_of::<i32>());
+    println!("Size of bool: {} bytes", size_of::<bool>());
+}
+
