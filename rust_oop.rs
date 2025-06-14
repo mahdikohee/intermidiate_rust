@@ -253,3 +253,16 @@ fn main() {
     println!("Display আউটপুট: {}", p);
 }
 
+
+//another example 
+use std::fmt::Display;
+
+fn displays_it<T: Display>(input: T) {
+    println!("{}", input);
+}
+
+fn main() {
+    displays_it("Hacker Dad");
+    displays_it(666);
+}
+
