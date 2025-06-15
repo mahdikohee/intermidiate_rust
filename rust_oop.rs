@@ -266,3 +266,48 @@ fn main() {
     displays_it(666);
 }
 
+
+
+//another oop based example for rust 
+use std::error::Error;
+use std::fmt;
+
+#[derive(Debug)]
+struct Errorone;
+
+impl Error for Errorone {}
+impl fmt::Display for Errorone {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "You got your first error @")
+    }
+}
+
+#[derive(Debug)]
+struct Errortwo;                // ← struct ডিক্লেয়ার করি
+
+impl Error for Errortwo {}
+impl fmt::Display for Errortwo {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "You got your second error !")
+    }
+}
+
+fn return_error(input: u8) -> Result<String, Box<dyn Error>> {
+    match input {
+        0 => Err(Box::new(Errorone)),
+        1 => Err(Box::new(Errortwo)),
+        _ => Ok("looks fine to me !".to_string()),  // ← to_string()
+    }
+}
+
+fn main() {
+    let vector: Vec<u8> = vec![1, 2, 3];
+    for number in vector {
+        match return_error(number) {               // ← number, not &number
+            Ok(msg)  => println!("Your number is {:?}", msg),
+            Err(err) => eprintln!("Error as e {:?}", err),
+        }
+    }
+}
+
+
