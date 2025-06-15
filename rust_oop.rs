@@ -311,3 +311,66 @@ fn main() {
 }
 
 
+
+//another example 
+// জীবন অবস্থা দেখানোর জন্য enum
+enum LifeState {
+    Alive,
+    Dead,
+    NeverAlive,
+    Uncertain,
+}
+
+// চরিত্র struct — সব তথ্য রাখে
+struct Character {
+    name: String,
+    age: u8,
+    height: u32,
+    weight: u32,
+    lifestate: LifeState,
+}
+
+// Character এর জন্য method implement
+impl Character {
+    // নতুন ক্যারেক্টার বানানোর জন্য constructor
+    fn new(name: &str, age: u8, height: u32, weight: u32, lifestate: LifeState) -> Self {
+        Self {
+            name: name.to_string(),
+            age,
+            height,
+            weight,
+            lifestate,
+        }
+    }
+
+    // তথ্য প্রিন্ট করার method
+    fn print_info(&self) {
+        println!("Name: {}", self.name);
+        println!("Age: {}", self.age);
+        println!("Height: {} cm", self.height);
+        println!("Weight: {} kg", self.weight);
+        println!(
+            "Life State: {}",
+            match self.lifestate {
+                LifeState::Alive => "Alive",
+                LifeState::Dead => "Dead",
+                LifeState::NeverAlive => "Never Alive",
+                LifeState::Uncertain => "Uncertain",
+            }
+        );
+    }
+}
+
+fn main() {
+    // কিছু ক্যারেক্টার তৈরি করছি
+    let character_1 = Character::new("Billy", 15, 170, 70, LifeState::Alive);
+    let character_2 = Character::new("Ghost", 100, 180, 60, LifeState::NeverAlive);
+    let character_3 = Character::new("Agent X", 40, 175, 65, LifeState::Uncertain);
+
+    // তাদের ইনফো প্রিন্ট করছি
+    character_1.print_info();
+    println!("---");
+    character_2.print_info();
+    println!("---");
+    character_3.print_info();
+}
