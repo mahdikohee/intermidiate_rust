@@ -593,3 +593,12 @@ fn main() {
 
     println!("3rd element: {}", value);
 }
+//another simple example of nth and usize 
+fn main() {
+    let text = "Kohee 😈";
+    let index: usize = 2;
+
+    let ch = text.chars().nth(index);
+    println!("Char at index {}: {:?}", index, ch);
+}
+
