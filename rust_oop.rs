@@ -374,3 +374,29 @@ fn main() {
     println!("---");
     character_3.print_info();
 }
+
+//another simple example of oop in rust 
+struct Counter {
+    count: usize,
+}
+
+impl Iterator for Counter {
+    type Item = usize;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn main() {
+    let mut counter = Counter { count: 0 };
+    while let Some(dibbo) = counter.next() {
+        println!(" got {:?}", dibbo);
+    }
+}
+
