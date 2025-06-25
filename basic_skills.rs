@@ -582,3 +582,14 @@ fn main() {
 }
 
 
+//another simple practise of usize 
+fn get_nth_element(arr: &[i32], index: usize) -> i32 {
+    arr[index]
+}
+
+fn main() {
+    let array = [5, 10, 15, 20];
+    let value = get_nth_element(&array, 2);
+
+    println!("3rd element: {}", value);
+}
