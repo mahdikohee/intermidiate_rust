@@ -734,4 +734,11 @@ Some explanation of this code ------so what is the diffirence between std::iter:
 so there is no serious diffirence but ( std::iter::IntoIterator::into_iter(vector) ) the best for generics and custom trait and mod and do work very fourcefuly and spesefic 
 and into_iter() is short from and less hard and less fourceful at all....
 
+//another example 
+fn main(){
+    let  vector :Vec<i32> = vec![1 , 2 , 3 , 4 , 5, 6] ; 
+    let mut iter = vector.into_iter() ; 
+    let some_number = iter.by_ref().take(2).collect::<Vec<_>>() ; 
+    println!("Some number is {:?}" , some_number) ; 
 
+}
