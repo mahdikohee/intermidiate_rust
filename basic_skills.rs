@@ -699,3 +699,25 @@ fn main(){
          .collect();
     println!("Even squire {:?}" , even_squire);
 }
+
+
+-----You must need to understand the diffirence between .cloned() vs |&&x| .............so u kow what is cloning means ...
+here cloned automitecially making i32 thats why u dont need to take any reference at all .......then why we take &&i32 here ??
+.iter() returns &i32 and for filter and mapping we must need another reference ....so overall we take &&x
+
+
+here is the same example using .clone() insted of &&i32 
+
+//ex--->
+fn main(){
+    let vector : Vec<i32> = vec![1 , 2 , 3 , 4 , 5 ,6] ; 
+    let squire_even : Vec<_> = vector 
+       .iter()
+       .cloned() 
+       .filter(|x| x %2 == 0)      
+       .map(|x| x * x)
+       .collect() ; 
+    println!("Your even squire number is {:?}" , squire_even);
+}
+
+//
