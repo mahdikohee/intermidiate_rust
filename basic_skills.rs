@@ -740,5 +740,95 @@ fn main(){
     let mut iter = vector.into_iter() ; 
     let some_number = iter.by_ref().take(2).collect::<Vec<_>>() ; 
     println!("Some number is {:?}" , some_number) ; 
+}
 
+
+//Another simple example 
+fn main(){
+    let vector :Vec<i32> = vec![1 , 2 , 3 , 4 , 5 , 6] ; 
+    let mut iter : std::vec::IntoIter<i32> = vector.into_iter() ; 
+    match iter.next(){
+        Some(val) => println!("First val is {:?}" , val) , 
+        None => eprintln!("No value found yet !") , 
+    }
+}
+..................here .next() returns Option<i32>.............................
+
+
+
+
+
+
+
+---------The bigger version -------------------------
+
+fn main(){
+    let name : Vec<char> = "helloworld".chars().collect() ; 
+    let mut iter : std::vec::IntoIter<char> = name.into_iter() ; 
+    //again if you use .next() u need to return Option<i32> for it 
+    match iter.next(){
+        Some(ch) => println!("first char is {:?} by option<i32>" , ch) , 
+        None => eprintln!("No char found as first !") ,
+    }
+    match iter.next(){
+        Some(ch) => println!("Second char is {:?}" , ch) , 
+        None => eprintln!("No char found as second !") ,
+    }
+    match iter.next(){
+        Some(ch) => println!("Third char is {:?}" , ch) , 
+        None => {
+            eprintln!("No char found as third") ;
+        }
+    }
+    match iter.next(){
+        Some(ch) => println!("Forth char is {:?}" , ch) , 
+        None => {
+            eprintln!("No char found as forth !") ; 
+        }
+    }
+    match iter.next(){
+        Some(ch) => println!("Fifth char is {:?}" , ch) , 
+        None => {
+            eprintln!("Error : No char found as fifth !") ;
+        }
+    }
+    let part1 = iter.by_ref().take(2).collect::<Vec<_>>() ; 
+    let part2 = iter.by_ref().take(2).collect::<Vec<_>>() ; 
+    let part3 = iter.by_ref().take(1).collect::<Vec<_>>() ; 
+    //print directly insted of .next()
+    println!("Part 1 is {:?}" , part1) ; 
+    println!("Part 2 is {:?}" , part2) ; 
+    println!("Part 3 is {:?}" , part3) ;
+
+    let mut full_word : Vec<char> = Vec::new() ; 
+    full_word.extend(part1) ; 
+    full_word.extend(part2) ; 
+    full_word.extend(part3) ;
+    
+    let full_string : String = full_word.into_iter().collect() ; 
+    println!("Again/Your Full string is {:?}" , full_string) ; 
+}
+
+
+-------------------------the little and minimal version  if you wise --------------------------------
+fn main() {
+    let mut iter = "helloworld".chars();
+
+    for (i, label) in ["First", "Second", "Third", "Fourth", "Fifth"].iter().enumerate() {
+        match iter.next() {
+            Some(ch) => println!("{} char is {:?}", label, ch),
+            None => eprintln!("No {} char found!", label),
+        }
+    }
+
+    let part1: Vec<_> = iter.by_ref().take(2).collect();
+    let part2: Vec<_> = iter.by_ref().take(2).collect();
+    let part3: Vec<_> = iter.by_ref().take(1).collect();
+
+    println!("Part 1: {:?}", part1);
+    println!("Part 2: {:?}", part2);
+    println!("Part 3: {:?}", part3);
+
+    let full: String = part1.into_iter().chain(part2).chain(part3).collect();
+    println!("Reconstructed string: {:?}", full);
 }
