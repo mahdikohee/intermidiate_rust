@@ -678,3 +678,16 @@ fn main() {
         unique_vector_with_duplicates
     );
 }
+
+//another simple example o vector and double referencing 
+fn main(){
+    let mut  vector  : Vec<i32> = Vec::new() ; 
+    for i in 1..100{
+        vector.push(i * 2) ;
+    }
+    let even_squire : Vec<_>= vector.iter()
+         .filter(|&&x| x % 2 == 0)
+         .map(|&x| x * x)
+         .collect();
+    println!("Even squire {:?}" , even_squire);
+}
