@@ -602,3 +602,16 @@ fn main() {
     println!("Char at index {}: {:?}", index, ch);
 }
 
+//another simple example of &&i32 .....double reference 
+fn print_value(r: &&i32) {              //the double reference 
+    println!("value = {}", **r);        //dereferencing 
+}
+
+fn main() {
+    let x = 10;
+    let r = &x;
+    let rr = &r;
+
+    print_value(rr); // rr = &&i32    
+}
+
