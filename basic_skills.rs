@@ -720,4 +720,16 @@ fn main(){
     println!("Your even squire number is {:?}" , squire_even);
 }
 
-//
+//another simple example 
+fn main(){
+    let vector : Vec<_> = vec![1 , 2 , 3 , 4 , 5 ,  6 , 7 , 8] ; 
+    let i_iter = std::iter::IntoIterator::into_iter(vector) ; 
+    let x : Vec<_> = i_iter.map(|z| z * 2).collect() ; 
+    for i in x{
+        println!("{:?}" , i) ;
+    }
+}
+
+Some explanation of this code ------so what is the diffirence between std::iter::IntoIterator::into_iter(vector)  vs .into_iter() ...
+so there is no serious diffirence but ( std::iter::IntoIterator::into_iter(vector) ) the best for generics and custom trait and mod and do work very fourcefuly and spesefic 
+and into_iter() is short from and less hard and less fourceful at all....
