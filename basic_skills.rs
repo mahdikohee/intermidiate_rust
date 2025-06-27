@@ -582,6 +582,14 @@ fn main() {
 }
 
 
+
+
+|||||||=======All about Iterator=======|||||||
+
+
+
+
+
 //another simple practise of usize 
 fn get_nth_element(arr: &[i32], index: usize) -> i32 {
     arr[index]
