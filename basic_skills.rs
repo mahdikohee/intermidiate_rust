@@ -615,3 +615,66 @@ fn main() {
     print_value(rr); // rr = &&i32    
 }
 
+
+
+//An advance code example of multiple use case 
+use std::collections::HashSet;
+
+fn main() {
+    let mut vector: Vec<i32> = Vec::new();
+
+    for i in 1..100 {
+        vector.push(i * 2);
+    }
+
+    println!("The vector is {:?}", vector);
+
+    let even_squire = <Vec<_> as std::iter::IntoIterator>::into_iter(vector)
+        .filter(|&x| x % 2 == 0)
+        .map(|x| x * x)
+        .collect::<Vec<_>>();
+
+    println!("The even squire is {:?}", even_squire);
+
+    let sum: i32 = even_squire.iter().sum();
+    println!("The sum of the even squire is {}", sum);
+
+    let max = even_squire.iter().max().unwrap_or(&0);
+    println!("The max of the even squire is {}", max);
+
+    let min = even_squire.iter().min().unwrap_or(&0);
+    println!("The min of the even squire is {}", min);
+
+    let average = sum as f64 / even_squire.len() as f64;
+    println!("The average of the even squire is {}", average);
+
+    let mut sorted_vector = even_squire.clone();
+    sorted_vector.sort();
+    println!("The sorted vector is {:?}", sorted_vector);
+
+    let reversed_vector: Vec<_> = sorted_vector.iter().rev().cloned().collect();
+    println!("The reversed vector is {:?}", reversed_vector);
+
+    let unique_vector: Vec<_> = sorted_vector
+        .iter()
+        .cloned()
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect();
+    println!("The unique vector is {:?}", unique_vector);
+
+    let mut vector_with_duplicates = sorted_vector.clone();
+    vector_with_duplicates.push(2);
+    vector_with_duplicates.push(4);
+
+    let unique_vector_with_duplicates: Vec<_> = vector_with_duplicates
+        .iter()
+        .cloned()
+        .collect::<HashSet<_>>()
+        .into_iter()
+        .collect();
+    println!(
+        "The unique vector with duplicates removed is {:?}",
+        unique_vector_with_duplicates
+    );
+}
