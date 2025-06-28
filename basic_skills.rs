@@ -832,3 +832,61 @@ fn main() {
     let full: String = part1.into_iter().chain(part2).chain(part3).collect();
     println!("Reconstructed string: {:?}", full);
 }
+
+
+-----------------Same code written in diffirent way-----------------------------------(Iterator of rust)------------
+//using generics   simple way  
+fn filter_even<T :Iterator<Item = i32>>(item : T) -> Vec<i32>{
+    item.filter(|x| x % 2 == 0).collect() 
+}
+fn main() -> Result<() , Box<dyn std::error::Error>>{
+    let vector : Vec<i32> = (1i32..100)
+    .map(|x| x.checked_mul(2).expect("Failed to do it !"))
+    .collect() ; 
+    let result = filter_even(vector.into_iter()) ; 
+    println!("Your result is {:?}" , result) ;
+    Ok(())
+}
+--------------------------Same code by dark way------------------------------------------- 
+
+// ১. Explicitly define a trait-bound generic function for filtering even numbers
+fn filter_even<I>(iter: I) -> Vec<i32>
+where
+    I: Iterator<Item = i32>,
+{
+    // এখানে filter() মেথডটি একটি নতুন Filter ইটারেটর তৈরি করে
+    let filtered: std::iter::Filter<I, fn(&i32) -> bool> = iter.filter(is_even as fn(&i32) -> bool);
+
+    // collect() করে final Vec তৈরি করি
+    let collected: Vec<i32> = filtered.collect();
+    collected
+}
+
+
+fn is_even(x: &i32) -> bool {
+    x % 2 == 0
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // ৩. Explicit type annotation সহ vector তৈরি
+    let range: std::ops::Range<i32> = 1i32..100;
+
+    let mapped: std::iter::Map<std::ops::Range<i32>, fn(i32) -> i32> = range.map(double_checked as fn(i32) -> i32);
+
+    let vector: Vec<i32> = mapped.collect();
+
+    // ৪. Explicitly use IntoIter and filter_even
+    let iterator: std::vec::IntoIter<i32> = vector.into_iter();
+
+    let result: Vec<i32> = filter_even::<std::vec::IntoIter<i32>>(iterator);
+
+    println!("Even numbers are: {:?}", result);
+
+    Ok(())
+}
+
+// i32 * 2 with checked bounds
+fn double_checked(x: i32) -> i32 {
+    x.checked_mul(2).expect("Check the bound of i32")
+}
+
