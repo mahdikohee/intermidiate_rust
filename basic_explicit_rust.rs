@@ -23,3 +23,11 @@ fn main(){
     let vector : Vec<i32> = vec![1 , 2 , 3] ;
     assert_eq!(None , vector.into_iter().nth(4)) ;  ----Because .nth() returns Option<> type and there is no value at index 4....so its None
 }
+
+//explicit way for a s simple for-loop 
+fn main(){
+    let number : std::ops::Range<i32> = 1..10 ;
+    for i in number{
+        println!("{:?}" , i) ;
+    }
+}
