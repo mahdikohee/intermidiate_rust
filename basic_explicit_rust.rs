@@ -19,4 +19,7 @@ fn main(){
     }
 }
 //another simple example 
-
+fn main(){
+    let vector : Vec<i32> = vec![1 , 2 , 3] ;
+    assert_eq!(None , vector.into_iter().nth(4)) ;  ----Because .nth() returns Option<> type and there is no value at index 4....so its None
+}
