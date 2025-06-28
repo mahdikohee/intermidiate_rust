@@ -848,27 +848,12 @@ fn main() -> Result<() , Box<dyn std::error::Error>>{
     println!("Your result is {:?}" , result) ;
     Ok(())
 }
----------------------same code one is iter() and another is into_iter()---------------------
 
-fn main() {
-    // ১ থেকে ৯৯ পর্যন্ত সংখ্যা থেকে vector তৈরি, প্রতিটি সংখ্যা × ২
-    let vector: Vec<i32> = (1i32..100)
-        .map(|i| i.checked_mul(2).expect("Overflow"))
-        .collect();
 
-    println!("Elements {:?}", vector);
+--if u use iter_into() then i should need explicit lifetime paramiters ...i dont know lifetime yet ....i will write the
+    code later of into_iter() later but not now 
 
-    // ফিল্টার ফাংশন যেটা &i32 আইটেম নেয়
-    fn filter_even<T: Iterator<Item = &i32>>(iter: T) -> Vec<i32> {
-        iter.filter(|x| *x % 2 == 0)  // ডেরেফারেন্স করতে হবে because .iter() returns &i32 insted of i32 
-            .map(|x| *x)               // reference থেকে value তে রূপান্তর because .iter() returns &i32 insted of i32 
-            .collect()
-    }
 
-    let even_number = filter_even(vector.iter());    
-
-    println!("Your even number is {:?}", even_number);
-}
 
 
 --------------------------Same code by dark way------------------------------------------- 
