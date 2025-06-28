@@ -93,7 +93,7 @@ fn main(){
 
         println!("Name is :{:?} and age :{:?}" , name , age)
     }
-}
+} 
 
 
 note ==> String::new() creates a empty string ....String::from() creates a string which already has a string value ..its not empty 
