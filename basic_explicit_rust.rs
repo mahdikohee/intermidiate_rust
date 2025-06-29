@@ -43,3 +43,13 @@ fn main(){
         println!("Your number is {:?}" , i) ;
     }
 }
+
+//Another simple example of stepping form a loop 
+// step = পদক্ষেপ
+fn main(){
+    let number : std::ops::RangeInclusive<i32> = 1..=10 ;
+    let stepped_num : std::iter::StepBy<std::ops::RangeInclusive<i32>> = number.step_by(2) ;
+    let result : Vec<i32> = stepped_num.collect() ;
+    println!("Result is {:?}" , result) ;
+
+}
