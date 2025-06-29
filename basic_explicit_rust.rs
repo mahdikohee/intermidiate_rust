@@ -31,3 +31,15 @@ fn main(){
         println!("{:?}" , i) ;
     }
 }
+
+//Another simple example of a for loop 
+fn main(){
+    let num1 : std::ops::Range<i32> = 1..10 ;
+    for i in num1 {
+        println!("Your number is {:?}" , i) ;
+    }
+    let num2 : std::ops::RangeInclusive<i32> = 1..=10 ;   -----see the diffirence between std::ops::Range<i32> vs std::ops::RangeInclusive<i32> 
+    for i in num2{
+        println!("Your number is {:?}" , i) ;
+    }
+}
