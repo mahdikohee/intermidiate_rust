@@ -11,3 +11,44 @@ fn main(){
     }
     println!("Your vector is {:?}" , vector) ;
 }
+
+//Another simple example of explicit rust 
+fn maybe_get_number(get_it: std::primitive::bool) -> std::option::Option<std::primitive::i32> {
+    if get_it {
+        std::option::Option::Some(42i32)
+    } else {
+        std::option::Option::None
+    }
+}
+
+fn main() {
+    let result: std::option::Option<std::primitive::i32> =
+        maybe_get_number(std::primitive::bool::from(true));
+
+    match result {
+        std::option::Option::Some(n) => {
+            let stdout: std::io::Stdout = std::io::stdout();
+            let mut handle: std::io::StdoutLock<'_> = stdout.lock();
+            use std::io::Write;
+
+            let bytes: &[u8] = {
+                // Manually build message: "Got a number: 42\n"
+                // We convert the number to string explicitly
+                let mut buffer: std::string::String = std::string::String::from("Got a number: ");
+                use std::fmt::Write as FmtWrite;
+                let _ = std::fmt::write(&mut buffer, std::format_args!("{}", n));
+                let _ = buffer.push('\n');
+                buffer.as_bytes()
+            };
+
+            let _ = handle.write_all(bytes);
+        }
+        std::option::Option::None => {
+            let stdout: std::io::Stdout = std::io::stdout();
+            let mut handle: std::io::StdoutLock<'_> = stdout.lock();
+            use std::io::Write;
+
+            let _ = handle.write_all(b"Got nothing\n");
+        }
+    }
+}
